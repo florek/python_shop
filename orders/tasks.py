@@ -9,5 +9,4 @@ def order_created(order_id):
     subject = 'Zamówienie nr {}'.format(order.id)
     message = 'Witaj, {}!\n\nZłożyłeś zamówienie w naszym sklepie. Identyfikator zamówienia to {}.'.format(order.first_name, order.id)
     mail_sent = send_mail(subject, message, 'test@gmail.com', [order.email])
-
     return mail_sent

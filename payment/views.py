@@ -12,10 +12,8 @@ from orders.models import Order
 def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
-
     if request.method == 'POST':
         nonce = request.POST.get('payment_method_nonce', None)
-
         result = braintree.Transaction.sale(
             {
                 'amount': '{:.2f}'.format(order.get_total_cost()),
@@ -25,7 +23,6 @@ def payment_process(request):
                 }
             }
         )
-
         if result.is_success:
             order.paid = True
             order.braintree_id = result.transaction.id
