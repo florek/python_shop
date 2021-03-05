@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'orders',
     'payment',
     'coupons',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -114,8 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'pl'
 
 LANGUAGES = (
-    ('pl', 'polski'),
-    ('en', 'angielski'),
+    ('pl', _('polski')),
+    ('en', _('angielski')),
 )
 
 LOCALE_PATHS = (
