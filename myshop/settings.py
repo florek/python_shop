@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from django.utils.translation import gettext_lazy as _
+from braintree import Configuration, Environment
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -28,7 +28,6 @@ SECRET_KEY = '^d&c!lxp=6xo+we--0ion%nt2*j8phwhj_t8j%x8e@hrv_hyy0'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     'payment',
     'coupons',
     'rosetta',
+    'localflavor',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -89,7 +88,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite34',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -108,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -132,7 +129,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -147,7 +143,6 @@ BRAINTREE_MERCHANT_ID = 'rwkzqpns232st72q'
 BRAINTREE_PUBLIC_KEY = '4hrwxyzg5dsc6q37'
 BRAINTREE_PRIVATE_KEY = '206b430cb3db394de7357f9c829d3ece'
 
-from braintree import Configuration, Environment
 
 Configuration.configure(
     Environment.Sandbox,
@@ -156,3 +151,6 @@ Configuration.configure(
     BRAINTREE_PRIVATE_KEY
 )
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
